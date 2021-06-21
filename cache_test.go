@@ -108,11 +108,11 @@ func TestCacheTimes(t *testing.T) {
 
 func TestNewFrom(t *testing.T) {
 	m := map[string]Item{
-		"a": Item{
+		"a": {
 			Object:     1,
 			Expiration: 0,
 		},
-		"b": Item{
+		"b": {
 			Object:     2,
 			Expiration: 0,
 		},
@@ -1267,14 +1267,14 @@ func testFillAndSerialize(t *testing.T, tc *Cache) {
 		{Num: 3},
 	}, DefaultExpiration)
 	tc.Set("[]*struct", []*TestStruct{
-		&TestStruct{Num: 4},
-		&TestStruct{Num: 5},
+		{Num: 4},
+		{Num: 5},
 	}, DefaultExpiration)
 	tc.Set("structception", &TestStruct{
 		Num: 42,
 		Children: []*TestStruct{
-			&TestStruct{Num: 6174},
-			&TestStruct{Num: 4716},
+			{Num: 6174},
+			{Num: 4716},
 		},
 	}, DefaultExpiration)
 
@@ -1452,7 +1452,7 @@ func BenchmarkRWMutexMapGet(b *testing.B) {
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		mu.RLock()
-		_, _ = m["foo"]
+		_ = m["foo"]
 		mu.RUnlock()
 	}
 }
@@ -1467,7 +1467,7 @@ func BenchmarkRWMutexInterfaceMapGetStruct(b *testing.B) {
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		mu.RLock()
-		_, _ = m[s]
+		_ = m[s]
 		mu.RUnlock()
 	}
 }
@@ -1481,7 +1481,7 @@ func BenchmarkRWMutexInterfaceMapGetString(b *testing.B) {
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		mu.RLock()
-		_, _ = m["foo"]
+		_ = m["foo"]
 		mu.RUnlock()
 	}
 }
@@ -1529,7 +1529,7 @@ func BenchmarkRWMutexMapGetConcurrent(b *testing.B) {
 		go func() {
 			for j := 0; j < each; j++ {
 				mu.RLock()
-				_, _ = m["foo"]
+				_ = m["foo"]
 				mu.RUnlock()
 			}
 			wg.Done()
