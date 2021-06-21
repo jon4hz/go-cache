@@ -7,8 +7,8 @@ import (
 	insecurerand "math/rand"
 	"os"
 	"runtime"
-	"time"
 	"sync"
+	"time"
 )
 
 // This is an experimental and unexported (for now) attempt at making a cache
@@ -131,10 +131,10 @@ type shardedJanitor struct {
 
 func (j *shardedJanitor) Run(sc *shardedCache) {
 	j.stop = make(chan bool)
-	tick := time.Tick(j.Interval)
+	tick := time.NewTicker(j.Interval)
 	for {
 		select {
-		case <-tick:
+		case <-tick.C:
 			sc.DeleteExpired()
 		case <-j.stop:
 			return
