@@ -20,14 +20,14 @@ Since this package uses sync.Map go version 1.9+ is required.
 
 ### Installation
 
-`go get github.com/jon4hz/go-cache`
+`go get github.com/jon4hz/go-cache/v2`
 
 ### Usage
 
 ```go
 import (
 	"fmt"
-	"github.com/jon4hz/go-cache"
+	"github.com/jon4hz/go-cache/v2"
 	"time"
 )
 
