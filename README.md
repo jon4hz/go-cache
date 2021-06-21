@@ -13,16 +13,21 @@ cache can be saved to and loaded from a file (using `c.Items()` to retrieve the
 items map to serialize, and `NewFrom()` to create a cache from a deserialized
 one) to recover from downtime quickly. (See the docs for `NewFrom()` for caveats.)
 
+### About this Fork
+This repository is a fork from github.com/patrickmn/go-cache with a few changes.  
+I've merged the [PR](https://github.com/patrickmn/go-cache/pull/72) from @vidmed to replace RWMutexMap with sync.Map and I've also made a few code cleanups and added a go.mod file.  
+Since this package uses sync.Map go version 1.9+ is required. 
+
 ### Installation
 
-`go get github.com/patrickmn/go-cache`
+`go get github.com/jon4hz/go-cache`
 
 ### Usage
 
 ```go
 import (
 	"fmt"
-	"github.com/patrickmn/go-cache"
+	"github.com/jon4hz/go-cache"
 	"time"
 )
 
