@@ -80,4 +80,4 @@ func main() {
 
 ### Reference
 
-`godoc` or [http://godoc.org/github.com/patrickmn/go-cache](http://godoc.org/github.com/patrickmn/go-cache)
+`godoc` or [http://godoc.org/github.com/jon4hz/go-cache](http://godoc.org/github.com/jon4hz/go-cache)
