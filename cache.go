@@ -1000,10 +1000,19 @@ func newCacheWithJanitor(de time.Duration, ci time.Duration, m sync.Map) *Cache 
 	return C
 }
 
+// GetExpiresDefault returns the default expiration duration
+func (c *cache) GetExpirationTime() time.Duration {
+	return c.defaultExpiration
+}
+
+//Get CleanupInterval returns the cleanup interval used by the janitor goroutine
+func (c *cache) GetCleanupInterval() time.Duration {
+	return c.janitor.Interval
+}
+
 // Return a new cache with a given default expiration duration and cleanup
 // interval. If the expiration duration is less than one (or NoExpiration),
-// the items in the cache never expire (by default), and must be deleted
-// manually. If the cleanup interval is less than one, expired items are not
+// the items in the cache never expire (by default), and must be deleteddefault
 // deleted from the cache before calling c.DeleteExpired().
 func New(defaultExpiration, cleanupInterval time.Duration) *Cache {
 	items := sync.Map{}

@@ -1773,3 +1773,19 @@ func TestGetWithExpiration(t *testing.T) {
 		t.Error("expiration for e is in the past")
 	}
 }
+
+func TestGetExpirationTime(t *testing.T) {
+	c := New(10, 0)
+	e := c.GetExpirationTime()
+	if e != time.Duration(10) {
+		t.Fatal("expiration time was not 10")
+	}
+}
+
+func TestGetCleanupInterval(t *testing.T) {
+	c := New(0, 10)
+	i := c.GetCleanupInterval()
+	if i != time.Duration(10) {
+		t.Fatal("cleanup interval was not 10")
+	}
+}
